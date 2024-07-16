@@ -17,30 +17,30 @@ PCBook is a Go project made from the dev.to tutorial: [dev.to tutorial](https://
 
 1. **Clone the Repository:**
 
-   \`\`\`sh
+   ```sh
    git clone https://github.com/FrankGuglielmo/pcbook.git
    cd pcbook
-   \`\`\`
+   ```
 
 2. **Install Dependencies:**
 
-   \`\`\`sh
+   ```sh
    go mod download
-   \`\`\`
+   ```
 
 3. **Install Protocol Buffers Compiler:**
 
    - **MacOS:**
 
-     \`\`\`sh
+     ```sh
      brew install protobuf
-     \`\`\`
+     ```
 
    - **Linux:**
 
-     \`\`\`sh
+     ```sh
      sudo apt-get install -y protobuf-compiler
-     \`\`\`
+     ```
 
    - **Windows:**
 
@@ -48,10 +48,10 @@ PCBook is a Go project made from the dev.to tutorial: [dev.to tutorial](https://
 
 4. **Install gRPC Plugin for Protocol Buffers Compiler:**
 
-   \`\`\`sh
+   ```sh
    go get -u google.golang.org/grpc
    go get -u github.com/golang/protobuf/protoc-gen-go
-   \`\`\`
+   ```
 
 ## Generate .proto Files
 
@@ -59,23 +59,23 @@ To generate the Go code from the .proto files, use the Makefile provided in the 
 
 1. **Navigate to the Project Directory:**
 
-   \`\`\`sh
+   ```sh
    cd pcbook
-   \`\`\`
+   ```
 
 2. **Run the Makefile:**
 
-   \`\`\`sh
+   ```sh
    make
-   \`\`\`
+   ```
 
 This will generate the necessary Go files from the .proto definitions.
 
 ## Project Structure
 
-- \`pb/\`: Contains the Protocol Buffers definitions and the generated Go files.
-- \`serializer/\`: Contains utility functions for serializing and deserializing data.
-- \`sample/\`: Contains sample data generation code.
+- `pb/`: Contains the Protocol Buffers definitions and the generated Go files.
+- `serializer/`: Contains utility functions for serializing and deserializing data.
+- `sample/`: Contains sample data generation code.
 
 ## Contributing
 
