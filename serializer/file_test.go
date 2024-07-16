@@ -1,6 +1,7 @@
 package serializer_test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -29,4 +30,37 @@ func TestFileSerializer(t *testing.T) {
 	require.NoError(t, err)
 
 	require.True(t, proto.Equal(laptop1, laptop2))
+}
+
+func TestWriteProtobufToBinaryFile_Error(t *testing.T) {
+	t.Parallel()
+
+	// Test with invalid file path
+	laptop := sample.NewLaptop()
+	err := serializer.WriteProtobufToBinaryFile(laptop, "/invalid-path/laptop.bin")
+	require.Error(t, err)
+}
+
+func TestReadProtobufFromBinaryFile_Error(t *testing.T) {
+	t.Parallel()
+
+	// Test with invalid file path
+	laptop := &pb.Laptop{}
+	err := serializer.ReadProtobufFromBinaryFile("/invalid-path/laptop.bin", laptop)
+	require.Error(t, err)
+
+	// Test with corrupted data
+	err = os.WriteFile("../tmp/corrupted.bin", []byte("corrupted data"), 0644)
+	require.NoError(t, err)
+	err = serializer.ReadProtobufFromBinaryFile("../tmp/corrupted.bin", laptop)
+	require.Error(t, err)
+}
+
+func TestWriteProtobufToJSONFile_Error(t *testing.T) {
+	t.Parallel()
+
+	// Test with invalid file path
+	laptop := sample.NewLaptop()
+	err := serializer.WriteProtobufToJSONFile(laptop, "/invalid-path/laptop.json")
+	require.Error(t, err)
 }
